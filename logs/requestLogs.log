@@ -24,3 +24,15 @@
 20250319	16:07:53	request	405c6215-4135-413b-a96e-20260c83b315	GET	http://localhost:3000	/assets/js/common-components/Modals/modal.js
 20250319	16:07:53	request	75b15ec2-5314-416c-af92-d33bd5f2f9d4	GET	http://localhost:3000	/assets/js/common-components/Modals/edit/edit_dog.modal.js
 20250319	16:07:53	request	ec9df531-9fce-43d5-8b2d-6c29dd7f06fb	GET	http://localhost:3000	/assets/js/utils/globalVariables.js
+20250319	16:55:11	request	fce6e365-22ca-4154-a374-6b23b507e198	GET	undefined	/
+20250319	16:55:11	request	2a4fa53a-3f14-4190-be51-1364d18178b5	GET	undefined	/assets/css/home.css
+20250319	16:55:11	request	d8005f0b-72c1-4d29-afee-0c18125aeba6	GET	undefined	/assets/css/common.css
+20250319	16:55:11	request	a25605c1-7598-4c18-a882-7c6312655ddd	GET	http://localhost:3000	/assets/js/common-components/index.js
+20250319	16:55:11	request	ef898ffe-a6b6-4e67-b61e-a7f013d573a1	GET	http://localhost:3000	/assets/js/main/home.js
+20250319	16:55:11	request	6b68266f-8332-4dcd-9cce-f652da92cc7b	GET	http://localhost:3000	/assets/js/common-components/GitRepositoryHeader/GitRepositoryHeader.js
+20250319	16:55:11	request	6945301c-1e98-4715-8412-7b332d27a6d9	GET	http://localhost:3000	/assets/js/common-components/Header/Header.js
+20250319	16:55:11	request	6d06a36c-9b0b-4d44-8d8b-52e40b16695a	GET	http://localhost:3000	/assets/js/common-components/Footer/Footer.js
+20250319	16:55:11	request	66fd1f27-b129-4ab4-ac4c-442f77d048ab	GET	http://localhost:3000	/assets/js/common-components/Modals/modal.js
+20250319	16:55:11	request	3ab04981-ab72-4dab-8899-af9d8652e8f4	GET	http://localhost:3000	/assets/js/common-components/Modals/edit/edit_dog.modal.js
+20250319	16:55:11	request	50a2e25f-3052-48f9-9bed-3787b78a8611	GET	http://localhost:3000	/assets/js/utils/globalVariables.js
+20250319	16:55:11	request	eb801a09-60c7-4ff0-99be-e26ac3bd782b	GET	undefined	/favicon.ico

@@ -21,8 +21,8 @@ app.use(express.static(path.join(__dirname, './','public')));
 app.use(cors(corsOptions));
 
 //----------------routing-------------------------------
-app.use('/testerror', require('./app/routes/testerror.route.js'))
-app.use('/employees', require('./app/routes/api/employees.route.js'))
+app.use('/testerror', require('./app/routes/testerror.route.js'));
+app.use('/employees', require('./app/routes/api/employees.route.js'));
 //----------------error handler-------------------------
 app.use(errorLogger)
 app.use(errorHandler)
