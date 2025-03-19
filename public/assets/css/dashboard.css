@@ -1,0 +1,412 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  text-decoration: none;
+}
+
+:root {
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: normal;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.wrapper-section {
+  display: flex;
+}
+.wrapper-section .dashboard-nav-section {
+  width: 15%;
+  background-color: rgb(23, 23, 23);
+}
+.wrapper-section .dashboard-nav-section .dnav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: baseline;
+  gap: calc(2vw + 2vh);
+  padding-left: calc(1vw + 1vh);
+  padding-right: calc(1vw + 1vh);
+  padding-top: calc(1vw + 1vh);
+}
+.wrapper-section .dashboard-nav-section .dnav-container button {
+  width: 90%;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+  transition: all 0.5s;
+}
+.wrapper-section .dashboard-nav-section .dnav-container button:hover {
+  transform: scale(1.05);
+}
+.wrapper-section .main-section .creation-section {
+  position: relative;
+  flex: 1;
+  padding-top: calc(1vw + 1vh);
+  padding-bottom: calc(1vw + 1vh);
+  padding-left: calc(1vw + 1vh);
+  padding-right: calc(1vw + 1vh);
+}
+.wrapper-section .main-section .creation-section .toggle-dashboard {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: calc(0.2vw + 0.2vh);
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: calc(0.8vw + 0.8vh);
+}
+.wrapper-section .main-section .creation-section .toggle-dashboard.off {
+  display: none;
+}
+.wrapper-section .main-section .creation-section .toggle-dashboard .book-closed {
+  font-size: calc(2.5vw + 2.5vh);
+}
+.wrapper-section .main-section .creation-section .toggle-dashboard:active {
+  color: #FF5C00;
+}
+.wrapper-section .main-section .creation-section .toggle-dashboard:hover {
+  transform: scale(1.1);
+}
+.wrapper-section .main-section .creation-section form {
+  display: flex;
+  flex-direction: column;
+}
+.wrapper-section .main-section .creation-section form h2 {
+  text-align: center;
+}
+.wrapper-section .main-section .creation-section form input[type=text] {
+  width: 30%;
+  padding-left: calc(0.2vw + 0.2vh);
+}
+.wrapper-section .main-section .creation-section form .radio-container {
+  display: flex;
+  gap: calc(1vh + 1vw);
+}
+.wrapper-section .main-section .creation-section form .radio-container .radio-name-container span {
+  display: block;
+}
+.wrapper-section .main-section .creation-section form .radio-container .radio-input-container {
+  /*       & input[type=radio] {
+          width: 20%;
+        }  */
+}
+.wrapper-section .main-section .creation-section form input[type=number] {
+  width: 20%;
+}
+.wrapper-section .main-section .creation-section form select {
+  margin-bottom: calc(1vw + 1vh);
+}
+.wrapper-section .main-section .creation-section form input[type=submit] {
+  text-align: center;
+  width: 40%;
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+  border: none;
+  background-color: rgb(8, 144, 255);
+  color: rgb(255, 255, 255);
+  border-radius: 25px;
+  padding-top: calc(0.3vw + 0.3vh);
+  padding-bottom: calc(0.3vw + 0.3vh);
+  box-shadow: 2px 2px 8px gray;
+  font-size: calc(0.8vw + 0.8vh);
+}
+.wrapper-section .main-section .creation-section form input[type=submit] :active {
+  border: solid 1px rgb(8, 144, 255);
+  color: rgb(8, 144, 255);
+}
+.wrapper-section .main-section .creation-section #doglist {
+  margin-top: calc(1vh + 1vw);
+}
+.wrapper-section .main-section .creation-section #doglist .dog-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: solid 1px black;
+  border-radius: 10px;
+  padding-left: calc(1vw + 1vh);
+  padding-right: calc(1vw + 1vh);
+  padding-top: calc(1vw + 1vh);
+  padding-bottom: calc(1vw + 1vh);
+  margin-bottom: calc(1vw + 1vh);
+}
+.wrapper-section .main-section .creation-section #doglist .dog-container .dog-info {
+  display: flex;
+  flex-direction: column;
+  gap: calc(1vw + 1vh);
+  width: 30%;
+}
+.wrapper-section .main-section .creation-section #doglist .dog-container .dog-info p {
+  border: solid 1px black;
+  border-radius: 10px;
+  min-height: calc(2vw + 2vh);
+  padding-left: calc(0.3vw + 0.3vh);
+}
+.wrapper-section .main-section .creation-section #doglist .dog-container .dog-infosmall:nth-child(1) {
+  background-color: green;
+}
+.wrapper-section .main-section .creation-section #doglist .dog-container .dog-actions {
+  display: flex;
+  gap: calc(1vw + 1vh);
+}
+.wrapper-section .main-section .creation-section #doglist .dog-container .dog-actions button {
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+  border: none;
+  background-color: #FF3131;
+  color: rgb(255, 255, 255);
+  border-radius: 25px;
+  padding-top: calc(0.3vw + 0.3vh);
+  padding-bottom: calc(0.3vw + 0.3vh);
+  padding-left: calc(0.5vw + 0.5vh);
+  padding-right: calc(0.5vw + 0.5vh);
+  box-shadow: 2px 2px 8px gray;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.wrapper-section .main-section .creation-section #doglist .dog-container .dog-actions button:nth-child(1) {
+  background-color: greenyellow !important;
+}
+.wrapper-section .main-section .creation-section #doglist .dog-container .dog-actions button:active {
+  background-color: rgb(255, 255, 255);
+  border: solid 1px #FF3131;
+  color: rgb(8, 144, 255);
+}
+.wrapper-section .main-section .creation-section #doglist .dog-container .dog-actions button:hover {
+  transform: scale(1.1);
+}
+.wrapper-section .main-section .creation-section .toggle-list {
+  margin-top: calc(1vw + 1vh);
+}
+.wrapper-section .main-section .creation-section .toggle-list button {
+  width: 20%;
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+  border: none;
+  background-color: #FF5C00;
+  color: rgb(255, 255, 255);
+  border-radius: 25px;
+  padding-top: calc(0.3vw + 0.3vh);
+  padding-bottom: calc(0.3vw + 0.3vh);
+  box-shadow: 2px 2px 8px gray;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.wrapper-section .main-section .creation-section .toggle-list button:active {
+  background-color: rgb(255, 255, 255);
+  border: solid 1px #FF5C00;
+  color: #FF5C00;
+}
+.wrapper-section .main-section .creation-section .toggle-list button:hover {
+  transform: scale(1.1);
+}
+.wrapper-section .main-section .admin-section {
+  display: none;
+  position: relative;
+  padding-top: calc(1vw + 1vh);
+  padding-bottom: calc(1vw + 1vh);
+  padding-left: calc(1vw + 1vh);
+  padding-right: calc(1vw + 1vh);
+}
+.wrapper-section .main-section .admin-section .mail-section {
+  margin-bottom: calc(1vw + 1vh);
+}
+.wrapper-section .main-section .admin-section .mail-section h1 {
+  font-size: calc(1.3vw + 1.3vh);
+  margin-bottom: calc(0.6vw + 0.6vh);
+}
+.wrapper-section .main-section .admin-section .mail-section #mail-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: calc(1.2vw + 1.2vh);
+}
+.wrapper-section .main-section .admin-section .mail-section #mail-form .input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: calc(1vw + 1vh);
+}
+.wrapper-section .main-section .admin-section .mail-section #mail-form .input-container input {
+  padding-left: calc(0.1vw + 0.1vh);
+  padding-right: calc(0.1vw + 0.1vh);
+}
+.wrapper-section .main-section .admin-section .mail-section #mail-form .input-container input::placeholder {
+  font-family: "Poppins", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.wrapper-section .main-section .admin-section .mail-section #mail-form .input-container select {
+  display: inline;
+}
+.wrapper-section .main-section .admin-section .mail-section #mail-form .input-container input[type=submit] {
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+  border: none;
+  background-color: #FF3131;
+  color: rgb(255, 255, 255);
+  border-radius: 25px;
+  padding-top: calc(0.3vw + 0.3vh);
+  padding-bottom: calc(0.3vw + 0.3vh);
+  padding-left: calc(0.5vw + 0.5vh);
+  padding-right: calc(0.5vw + 0.5vh);
+  box-shadow: 2px 2px 8px gray;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.wrapper-section .main-section .admin-section .mail-section #mail-form .input-container input[type=submit]:active {
+  background-color: rgb(255, 255, 255);
+  border: solid 1px #FF3131;
+  color: rgb(8, 144, 255);
+}
+.wrapper-section .main-section .admin-section .mail-section #mail-form .input-container input[type=submit]:hover {
+  transform: scale(1.1);
+}
+.wrapper-section .main-section .admin-section .logs-section {
+  justify-content: left;
+  margin-top: calc(1.5vw + 1.5vh);
+}
+.wrapper-section .main-section .admin-section .logs-section form {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: calc(0.8vw + 0.8vh);
+}
+.wrapper-section .main-section .admin-section .logs-section form input[type=submit] {
+  width: 10%;
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+  border: none;
+  background-color: #FF3131;
+  color: rgb(255, 255, 255);
+  border-radius: 25px;
+  padding-top: calc(0.3vw + 0.3vh);
+  padding-bottom: calc(0.3vw + 0.3vh);
+  box-shadow: 2px 2px 8px gray;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.wrapper-section .main-section .admin-section .logs-section form input[type=submit]:active {
+  background-color: rgb(255, 255, 255);
+  border: solid 1px #FF3131;
+  color: rgb(8, 144, 255);
+}
+.wrapper-section .main-section .admin-section .logs-section form input[type=submit]:hover {
+  transform: scale(1.1);
+}
+.wrapper-section .main-section .admin-section .admin-table-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 30vh;
+  gap: calc(0.8vw + 0.8vh);
+}
+.wrapper-section .main-section .admin-section .admin-table-section h1 {
+  text-align: center;
+  margin-bottom: calc(0.6vw + 0.6vh);
+}
+.wrapper-section .main-section .admin-section .admin-table-section #mail-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: calc(1.2vw + 1.2vh);
+}
+.wrapper-section .main-section .admin-section .admin-table-section #mail-form input[type=submit] {
+  width: 80%;
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+  border: none;
+  background-color: rgb(8, 144, 255);
+  color: rgb(255, 255, 255);
+  border-radius: 25px;
+  padding-top: calc(0.3vw + 0.3vh);
+  padding-bottom: calc(0.3vw + 0.3vh);
+  padding-left: calc(0.3vw + 0.3vh);
+  padding-right: calc(0.3vw + 0.3vh);
+  box-shadow: 2px 2px 8px gray;
+  cursor: pointer;
+}
+.wrapper-section .main-section .admin-section .admin-table-section #mail-form input[type=submit]:active {
+  background-color: rgb(255, 255, 255);
+  border: solid 1px rgb(8, 144, 255);
+  color: rgb(8, 144, 255);
+}
+.wrapper-section .main-section .admin-section .admin-table-section #mail-form input {
+  transform: scale(1.1);
+}
+.wrapper-section .main-section .admin-section .admin-table-section #mail-form input::placeholder {
+  font-family: "Poppins", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.wrapper-section .main-section .admin-section .admin-table-section .exception-table-container, .wrapper-section .main-section .admin-section .admin-table-section .error-table-container, .wrapper-section .main-section .admin-section .admin-table-section .access-table-container {
+  width: 80%; /* Full width */
+  border-collapse: collapse; /* Removes spacing between borders */
+  margin: 20px 0; /* Adds some spacing around the table */
+  font-size: 16px; /* Makes text readable */
+  text-align: left; /* Aligns text to the left */
+  background-color: #f9f9f9; /* Light background */
+}
+.wrapper-section .main-section .admin-section .admin-table-section .exception-table-container th, .wrapper-section .main-section .admin-section .admin-table-section .error-table-container th, .wrapper-section .main-section .admin-section .admin-table-section .access-table-container th {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  padding: 12px; /* Adds space inside headers */
+  text-transform: uppercase; /* Makes header text uppercase */
+  text-align: center;
+}
+.wrapper-section .main-section .admin-section .admin-table-section .exception-table-container td, .wrapper-section .main-section .admin-section .admin-table-section .error-table-container td, .wrapper-section .main-section .admin-section .admin-table-section .access-table-container td {
+  padding: 10px; /* Adds spacing inside table cells */
+  border-bottom: 1px solid #ddd; /* Adds a subtle border */
+  text-align: center;
+}
+.wrapper-section .main-section .admin-section .admin-table-section .exception-table-container tr:nth-child(even), .wrapper-section .main-section .admin-section .admin-table-section .error-table-container tr:nth-child(even), .wrapper-section .main-section .admin-section .admin-table-section .access-table-container tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.wrapper-section .main-section .admin-section .admin-table-section .exception-table-container tr:hover, .wrapper-section .main-section .admin-section .admin-table-section .error-table-container tr:hover, .wrapper-section .main-section .admin-section .admin-table-section .access-table-container tr:hover {
+  background-color: #ddd;
+}
+.wrapper-section .main-section .admin-section .admin-table-section .exception-table-container .delete-log, .wrapper-section .main-section .admin-section .admin-table-section .error-table-container .delete-log, .wrapper-section .main-section .admin-section .admin-table-section .access-table-container .delete-log {
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+  border: none;
+  background-color: red;
+  color: rgb(255, 255, 255);
+  border-radius: 25px;
+  padding-top: calc(0.3vw + 0.3vh);
+  padding-bottom: calc(0.3vw + 0.3vh);
+  box-shadow: 2px 2px 8px gray;
+  font-size: calc(0.6vw + 0.6vh);
+  padding-right: calc(0.3vw + 0.3vh);
+  padding-left: calc(0.3vw + 0.3vh);
+  cursor: pointer;
+}
+.wrapper-section .main-section .admin-section .admin-table-section .exception-table-container .delete-log:active, .wrapper-section .main-section .admin-section .admin-table-section .error-table-container .delete-log:active, .wrapper-section .main-section .admin-section .admin-table-section .access-table-container .delete-log:active {
+  background-color: white;
+  border: solid 1px red;
+  color: red;
+}

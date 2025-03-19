@@ -1,0 +1,14 @@
+20250316	17:52:53	error	efd55e11-a3de-480d-ba68-bd14d4298445		invalid get request in logsTest.controller.js
+20250316	17:53:01	error	367f2270-1358-4a2d-a271-8ad0db8359cb		invalid get request in logsTest.controller.js
+20250318	20:16:18	error	8e10cde2-5afb-4dc5-ab4f-a9d85d845b54		 in employees.controller.js
+20250318	20:28:11	error	79ae74f0-072e-4b15-a933-bc5495119d00		Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '??' at line 1 in employees.controller.js
+20250318	21:27:08	error	e2f72131-c8b8-4fc8-9410-689fedb57203		id.match is not a function in employees.controller.js
+20250318	21:51:39	error	d3332af0-b080-4674-8fc4-9908e57fa070		Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '??' at line 1 in employees.controller.js
+20250318	21:51:46	error	6bbcb315-8452-41c0-9d7b-1d7b7181eec1		Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '??' at line 1 in employees.controller.js
+20250319	15:22:55	error	02a7b857-54bc-4a2f-ad27-4c21ae18dc24		Error: ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' in employees.controller.js
+20250319	15:24:10	error	813c46de-8b19-4219-a3db-48114e1c4f29		Error: ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' in employees.controller.js
+20250319	15:24:50	error	bd938bb0-c25a-482f-a8de-49c49ac93442		Error: ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' in employees.controller.js
+20250319	15:25:30	error	2cbe379e-7553-4328-8051-2de6d2364f65		Error: ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' in employees.controller.js
+20250319	15:26:43	error	f166b0df-04b5-47be-803f-357fbf617d98		Error: ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' in employees.controller.js
+20250319	15:27:00	error	3d754fa6-b4c8-44af-ada9-ba3cf7277557		Error: ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' in employees.controller.js
+20250319	15:27:23	error	f0af88a8-74ba-4b5d-959f-ab47dc755c9e		Error: ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' in employees.controller.js

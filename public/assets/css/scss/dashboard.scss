@@ -1,0 +1,493 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+$blue-fb: rgb(8, 144, 255);
+$blue-fb-dark: rgb(8, 33, 255);
+$white-font: rgb(255, 255, 255);
+$black-footer: rgb(23, 23, 23);
+$neon-red: #FF3131;
+$neon-orange: #FF5C00;
+$beige: #F5F5DC;
+
+@mixin poppins-thin {
+  font-family: "Poppins", serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+@mixin poppins-light {
+  font-family: "Poppins", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin poppins-regular {
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin poppins-medium {
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin poppins-bold {
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin blue-button($widht: 100%) {
+  width: $widht;
+  @include poppins-bold;
+  border: none;
+  background-color: $blue-fb;
+  color: $white-font;
+  border-radius: 25px;
+  padding-top: calc(0.3vw + 0.3vh);
+  padding-bottom: calc(0.3vw + 0.3vh);
+  box-shadow: 2px 2px 8px gray;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:active {
+    background-color: $white-font;
+    border: solid 1px $neon-red;
+    color: $blue-fb;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@mixin orange-button($widht: 100%) {
+  width: $widht;
+  @include poppins-bold;
+  border: none;
+  background-color: $neon-orange;
+  color: $white-font;
+  border-radius: 25px;
+  padding-top: calc(0.3vw + 0.3vh);
+  padding-bottom: calc(0.3vw + 0.3vh);
+  box-shadow: 2px 2px 8px gray;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:active {
+    background-color: $white-font;
+    border: solid 1px $neon-orange;
+    color: $neon-orange;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  text-decoration: none;
+}
+
+:root {
+  @include poppins-regular;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.wrapper-section {
+  display: flex;
+  .dashboard-nav-section {
+    width: 15%;
+    background-color: $black-footer;
+    & .dnav-container {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      justify-content: baseline;
+      gap: calc(2vw + 2vh);
+      padding-left: calc(1vw + 1vh);
+      padding-right: calc(1vw + 1vh);
+      padding-top: calc(1vw + 1vh);
+      & button {
+        width: 90%;
+        background-color: white;
+        border: none;
+        border-radius: 10px;
+        @include poppins-bold();
+        transition: all 0.5s;
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+
+  .main-section {
+    .creation-section {
+      position: relative;
+      flex: 1;
+      padding-top: calc(1vw + 1vh);
+      padding-bottom: calc(1vw + 1vh);
+      padding-left: calc(1vw + 1vh);
+      padding-right: calc(1vw + 1vh);
+    
+      & .toggle-dashboard {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: calc(0.2vw + 0.2vh);
+        border: none;
+        background-color: white;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: calc(0.8vw + 0.8vh);
+        &.off {
+          display: none;
+        }
+        & .book-closed {
+          font-size: calc(2.5vw + 2.5vh);
+        }
+        &:active {
+          color: $neon-orange;
+        }
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    
+      & form {
+        display: flex;
+        flex-direction: column ;
+      & h2 {
+        text-align: center;
+      }
+      & input[type=text] {
+        width: 30%;
+        padding-left: calc(0.2vw + 0.2vh);
+      }
+      & .radio-container {
+        display: flex;
+        gap: calc(1vh + 1vw);
+        & .radio-name-container {
+          & span {
+            display: block;
+          }
+        }
+        & .radio-input-container {
+    /*       & input[type=radio] {
+            width: 20%;
+          }  */
+        }
+      }
+      & input[type=number] {
+        width: 20%;
+      }
+    
+      & select {
+        margin-bottom: calc(1vw + 1vh);
+      }
+    
+      & input[type=submit] {
+        text-align: center;
+        width: 40%;
+        @include poppins-bold;
+        border: none;
+        background-color: $blue-fb;
+        color: $white-font;
+        border-radius: 25px;
+        padding-top: calc(0.3vw + 0.3vh);
+        padding-bottom: calc(0.3vw + 0.3vh);
+        box-shadow: 2px 2px 8px gray;
+        font-size: calc(0.8vw + 0.8vh);
+        & :active {
+          border: solid 1px $blue-fb;
+          color: $blue-fb;
+        }
+      }
+      }
+      
+      & #doglist {
+        margin-top: calc(1vh + 1vw); 
+        & .dog-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border: solid 1px black;
+          border-radius: 10px;
+          padding-left: calc(1vw + 1vh);
+          padding-right: calc(1vw + 1vh);
+          padding-top: calc(1vw + 1vh);
+          padding-bottom: calc(1vw + 1vh);
+          margin-bottom: calc(1vw + 1vh);
+          & .dog-info {
+            display: flex;
+            flex-direction: column;
+            gap: calc(1vw + 1vh);
+            width: 30%;
+            & p {
+              border: solid 1px black;
+              border-radius: 10px;
+              min-height: calc(2vw + 2vh);
+              padding-left: calc(0.3vw + 0.3vh);
+             }
+    
+            &small:nth-child(1) {
+              background-color: green;
+            }
+          }
+    
+          & .dog-actions {
+            display: flex;
+            gap: calc(1vw + 1vh);
+    
+            & button {
+              &:nth-child(1) {
+                background-color: greenyellow !important; 
+              }
+              @include poppins-bold;
+              border: none;
+              background-color: $neon-red; 
+              color: $white-font;
+              border-radius: 25px;
+              padding-top: calc(0.3vw + 0.3vh);
+              padding-bottom: calc(0.3vw + 0.3vh);
+              padding-left: calc(0.5vw + 0.5vh);
+              padding-right: calc(0.5vw + 0.5vh);
+              box-shadow: 2px 2px 8px gray;
+              cursor: pointer;
+              transition: all 0.3s;
+              
+              &:active {
+                background-color: $white-font;
+                border: solid 1px $neon-red;
+                color: $blue-fb;
+              }
+    
+              &:hover {
+                transform: scale(1.1);
+              }
+            }
+    
+            
+    
+          }
+        }
+       }
+
+      & .toggle-list {
+        margin-top: calc(1vw + 1vh);
+        & button {
+          @include orange-button(20%);
+        }
+      }
+    } 
+     
+    .admin-section {
+      display: none;
+      position: relative;
+      padding-top: calc(1vw + 1vh);
+      padding-bottom: calc(1vw + 1vh);
+      padding-left: calc(1vw + 1vh);
+      padding-right: calc(1vw + 1vh);
+        & .mail-section {
+        margin-bottom: calc(1vw + 1vh);
+        & h1 {
+          font-size: calc(1.3vw + 1.3vh);
+          margin-bottom: calc(0.6vw + 0.6vh);
+        }
+      
+        & #mail-form {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items:baseline ;
+          gap: calc(1.2vw + 1.2vh);
+          & .input-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: calc(1vw + 1vh);
+            & input {
+              padding-left: calc(0.1vw + 0.1vh);
+              padding-right: calc(0.1vw + 0.1vh);
+              &::placeholder {
+                @include poppins-light();
+              }
+            }
+    
+            & select {
+              display: inline;
+            }
+    
+            & input[type=submit] { 
+        
+              @include poppins-bold;
+              border: none;
+              background-color: $neon-red; 
+              color: $white-font;
+              border-radius: 25px;
+              padding-top: calc(0.3vw + 0.3vh);
+              padding-bottom: calc(0.3vw + 0.3vh);
+              padding-left: calc(0.5vw + 0.5vh);
+              padding-right: calc(0.5vw + 0.5vh);
+              box-shadow: 2px 2px 8px gray;
+              cursor: pointer;
+              transition: all 0.3s;
+              &:active {
+                background-color: $white-font;
+                border: solid 1px $neon-red;
+                color: $blue-fb;
+              }
+    
+              &:hover {
+                transform: scale(1.1);
+              }
+            }
+          }
+        
+        }
+      }
+      
+      & .logs-section {
+        justify-content: left;
+        margin-top: calc(1.5vw + 1.5vh);
+    
+          & form {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            gap: calc(0.8vw + 0.8vh);
+            & input[type=submit] {
+              width: 10%;
+              @include poppins-bold;
+              border: none;
+              background-color: $neon-red;
+              color: $white-font;
+              border-radius: 25px;
+              padding-top: calc(0.3vw + 0.3vh);
+              padding-bottom: calc(0.3vw + 0.3vh);
+              box-shadow: 2px 2px 8px gray;
+              cursor: pointer;
+              transition: all 0.3s;
+              &:active {
+                background-color: $white-font;
+                border: solid 1px $neon-red;
+                color: $blue-fb;
+              }
+              &:hover {
+                transform: scale(1.1);
+              }
+            }
+          }
+      }
+      
+      & .admin-table-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 30vh;
+        gap: calc(0.8vw + 0.8vh);
+        & h1 {
+          text-align: center;
+          margin-bottom: calc(0.6vw + 0.6vh);
+        }
+        & #mail-form {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: calc(1.2vw + 1.2vh);
+          & input[type=submit] {
+            width: 80%;
+            @include poppins-bold;
+            border: none;
+            background-color: $blue-fb;
+            color: $white-font;
+            border-radius: 25px;
+            padding-top: calc(0.3vw + 0.3vh);
+            padding-bottom: calc(0.3vw + 0.3vh);
+            padding-left: calc(0.3vw + 0.3vh);
+            padding-right: calc(0.3vw + 0.3vh);
+            box-shadow: 2px 2px 8px gray;
+            cursor: pointer;
+            &:active {
+              background-color: $white-font;
+              border: solid 1px $blue-fb;
+              color: $blue-fb;
+            }
+          }
+      
+          & input {
+            transform: scale(1.1);
+            &::placeholder {
+              @include poppins-light();
+            }
+          }
+        }
+        & .exception-table-container, .error-table-container, .access-table-container {
+         width: 80%; /* Full width */
+          border-collapse: collapse; /* Removes spacing between borders */
+          margin: 20px 0; /* Adds some spacing around the table */
+          font-size: 16px; /* Makes text readable */
+          text-align: left; /* Aligns text to the left */
+          background-color: #f9f9f9; /* Light background */
+          & th {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            padding: 12px; /* Adds space inside headers */
+            text-transform: uppercase; /* Makes header text uppercase */
+            text-align: center;
+          }
+          & td {
+            padding: 10px; /* Adds spacing inside table cells */
+            border-bottom: 1px solid #ddd; /* Adds a subtle border */
+            text-align: center;
+          }
+      
+          & tr:nth-child(even) {
+            background-color: #f2f2f2;
+          }
+          
+          & tr:hover {
+            background-color: #ddd;
+          }
+      
+          & .delete-log {
+            @include poppins-bold;
+            border: none;
+            background-color: red;
+            color: $white-font;
+            border-radius: 25px;
+            padding-top: calc(0.3vw + 0.3vh);
+            padding-bottom: calc(0.3vw + 0.3vh);
+            box-shadow: 2px 2px 8px gray;
+            font-size: calc(0.6vw + 0.6vh);
+            padding-right: calc(0.3vw + 0.3vh);
+            padding-left: calc(0.3vw + 0.3vh);
+            cursor: pointer;
+            &:active {
+              background-color: white;
+              border: solid 1px red;
+              color: red;
+            }
+          }
+        } 
+      }
+    }
+  }
+  
+}
+
+
+
+

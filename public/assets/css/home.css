@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  text-decoration: none;
+}
+
+:root {
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: normal;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-section {
+  position: relative;
+  flex: 1;
+  padding-top: calc(1vw + 1vh);
+  padding-bottom: calc(1vw + 1vh);
+  padding-left: calc(1vw + 1vh);
+  padding-right: calc(1vw + 1vh);
+}
+.main-section .welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-section .welcome-container .wcontainer-left h1 {
+  font-size: calc(1.7vw + 1.7vh);
+}
+.main-section .welcome-container .wcontainer-left p {
+  font-size: calc(1vw + 1vh);
+}
+.main-section .welcome-container .wcontainer-left .start-creation-button {
+  width: 30%;
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+  border: none;
+  background-color: rgb(8, 144, 255);
+  color: rgb(255, 255, 255);
+  border-radius: 25px;
+  padding-top: calc(0.3vw + 0.3vh);
+  padding-bottom: calc(0.3vw + 0.3vh);
+  box-shadow: 2px 2px 8px gray;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-section .welcome-container .wcontainer-left .start-creation-button:active {
+  background-color: rgb(255, 255, 255);
+  border: solid 1px #FF3131;
+  color: rgb(8, 144, 255);
+}
+.main-section .welcome-container .wcontainer-left .start-creation-button:hover {
+  transform: scale(1.1);
+}
+.main-section .welcome-container .wcontainer-left .start-creation-button a {
+  font-size: calc(0.8vw + 0.8vh);
+  color: white;
+  text-decoration: none;
+}
+.main-section .welcome-container .wcontainer-right {
+  width: 70%;
+  border: solid 1px black;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.main-section .welcome-container .wcontainer-right img {
+  width: 100%;
+}
