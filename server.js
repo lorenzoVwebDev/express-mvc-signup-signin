@@ -23,6 +23,7 @@ app.use(cors(corsOptions));
 //----------------routing-------------------------------
 app.use('/testerror', require('./app/routes/testerror.route.js'));
 app.use('/employees', require('./app/routes/api/employees.route.js'));
+app.use('/authentication', require('./app/routes/authentication/authentication.route.js'));
 //----------------error handler-------------------------
 app.use(errorLogger)
 app.use(errorHandler)
