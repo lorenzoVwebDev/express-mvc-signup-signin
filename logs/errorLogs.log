@@ -18,3 +18,7 @@
 20250319	19:21:25	error	43c3e182-1b29-4d05-9ce0-c1c2b697e482		insert is not defined in authentication.controller.js
 20250319	21:43:36	error	9cb288fd-5f68-4d25-9606-76d325ef40f0		Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?' at line 1 in authentication.controller.js
 20250319	21:45:04	error	d4c33f92-a6e6-4f36-a6c3-316699e70d54		Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?' at line 1 in authentication.controller.js
+20250320	09:34:06	error	b55c7098-df4f-42bc-bb30-a2223dfccb67		Error: ER_NO_SUCH_TABLE: Table 'mvc_signup_signin.employees' doesn't exist in employees.controller.js
+20250320	09:34:38	error	ce33f7ee-b068-4301-948d-a6dba8c20052		Error: ER_NO_SUCH_TABLE: Table 'mvc_signup_signin.employees' doesn't exist in employees.controller.js
+20250320	09:34:39	error	3546d68a-23bb-4b90-9f56-83a8b5b65a26		Error: ER_NO_SUCH_TABLE: Table 'mvc_signup_signin.employees' doesn't exist in employees.controller.js
+20250320	09:34:40	error	c0b5eab9-0f02-4d61-898f-9d7299cb4479		Error: ER_NO_SUCH_TABLE: Table 'mvc_signup_signin.employees' doesn't exist in employees.controller.js

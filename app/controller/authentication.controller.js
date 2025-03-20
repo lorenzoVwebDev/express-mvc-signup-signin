@@ -1,8 +1,13 @@
+//modules
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const striptags = require('striptags')
+const dayjs = require('dayjs');
+require('dotenv').config();
+//models
 const { mysqlQuery } = require('../configuration/mysqldb.config.js')
 const { errorCreator } = require('../configuration/commonFunctions.js')
-const striptags = require('striptags')
-const dayjs = require('dayjs')
+
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/;
 
@@ -80,29 +85,44 @@ const signIn = async (req, res, next) => {
     })
 
     if (!foundUser) return res.status(400).json({'message': 'not-found'})
-
-      console.log(foundUser)
     
     const currentUnix = dayjs().unix()
     
     if (currentUnix > foundUser.datestamp) return res.status(410).redirect('/authentication/changepwd');
 
     const currentUnixMinus5 = dayjs().subtract(5, 'minute').unix()
-    if (foundUser.attempts <= 3 || foundUser.lastattempt < currentUnixMinus5) {
+    if (foundUser.attempts < 3 || foundUser.lastattempt < currentUnixMinus5) {
       const match = await bcrypt.compare(password, foundUser.password);
 
       if (match) {
+        const accessToken = jwt.sign(
+          {"username": foundUser.username},
+          process.env.ACCESS_TOKEN,
+          {expiresIn: 900}
+        )
+
+        const refreshToken = jwt.sign(
+          {"username": foundUser.username},
+          process.env.REFRESH_TOKEN,
+          {expiresIn: "1d"}
+        )
+
         foundUser.validattempt = currentUnix;
         foundUser.lastattempt = currentUnix;
         foundUser.attempts = 0;
-        //jwt
+        foundUser.refresh_token = refreshToken;
+
         const update = await new Promise((resolve, reject) => {
-          mysqlQuery("UPDATE users SET attempts = ?, lastattempt = ?, validattempt = ? WHERE id = ?", [foundUser.attempts, foundUser.lastattempt, foundUser.validattempt, foundUser.id], resolve, reject)
+          mysqlQuery("UPDATE users SET refresh_token = ?, attempts = ?, lastattempt = ?, validattempt = ? WHERE id = ?", [foundUser.refresh_token, foundUser.attempts, foundUser.lastattempt, foundUser.validattempt, foundUser.id], resolve, reject)
         }).then(data => data).catch(error => {
           throw new Error(error)
         })
-
-        res.status(200).json({"message":"send-token"})
+//add the secure: true flag to .cookie to allow the cookies to travel only over https protocols
+        return res.status(200)
+          .cookie('refreshToken', refreshToken, {
+            httpOnly: true, maxAge: 24 * 60 * 60 * 1000
+          })
+          .json({"accessToken":accessToken})
       } else {
         foundUser.lastattempt = currentUnix;
         if (currentUnixMinus5>=lastattempt) {
@@ -110,13 +130,12 @@ const signIn = async (req, res, next) => {
         } else if (foundUser.attempts < 3) {
           foundUser.attempts += 1;
         }
+
+        return res.status(401).json({'message':'wrong-password'})
       }
     } else {
       return res.status(401).json({"message":"attempts-excedeed"})
     }
-
-
-
   } catch (error) {
     res.status(500).json({'message':'server-error'})
     next(errorCreator(error.message, 'error', __filename))

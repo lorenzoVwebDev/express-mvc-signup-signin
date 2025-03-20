@@ -6,6 +6,7 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const app = express();
 const cors = require('cors')
+const cookieParser = require('cookie-parser');
 const corsOptions = require('./app/configuration/corsOptions.js');
 require('dotenv').config()
 //--------------- middlewares imports ------------------
@@ -15,7 +16,8 @@ const errorHandler = require('./app/middleware/errorHandler.js');
 const PORT = process.env.PORT || 3000;
 //----------------middlewares---------------------------
 app.use(requestLogger);
-app.use(express.json())
+app.use(express.json());
+app.use(cookieParser())
 app.use(express.static(path.join(__dirname, './','public')));
 
 app.use(cors(corsOptions));
