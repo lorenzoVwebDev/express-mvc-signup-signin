@@ -88,7 +88,7 @@ const signIn = async (req, res, next) => {
     
     const currentUnix = dayjs().unix()
     
-    if (currentUnix > foundUser.datestamp) return res.status(410).redirect('/authentication/changepwd');
+    if (currentUnix > foundUser.datestamp) return res.status(410).redirect('/authentication.view/changepwr.view.html');
 
     const currentUnixMinus5 = dayjs().subtract(5, 'minute').unix()
     if (foundUser.attempts < 3 || foundUser.lastattempt < currentUnixMinus5) {
@@ -120,7 +120,7 @@ const signIn = async (req, res, next) => {
 //add the secure: true flag to .cookie to allow the cookies to travel only over https protocols
         return res.status(200)
           .cookie('refreshToken', refreshToken, {
-            httpOnly: true, maxAge: 24 * 60 * 60 * 1000
+            httpOnly: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000
           })
           .json({"accessToken":accessToken})
       } else {
@@ -167,12 +167,12 @@ const logOut = async (req, res, next) => {
       })
 
       res.clearCookie('refreshToken', refreshToken, {
-        httpOnly: true, maxAge: 24 * 60 * 60 * 1000
+        httpOnly: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000
       }).status(200).json({'response':'log-out'})
 
     } else {
       res.clearCookie('refreshToken', refreshToken, {
-        httpOnly: true, maxAge: 24 * 60 * 60 * 1000
+        httpOnly: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000
       }).status(200).json({'response':'log-out'})
     }
   } catch (error) {
@@ -181,4 +181,12 @@ const logOut = async (req, res, next) => {
   }
 }
 
-module.exports = {signUp, signIn, logOut}
+const changePwd = async (req, res, next) => {
+  try {
+
+  } catch (error) {
+
+  }
+}
+
+module.exports = {signUp, signIn, logOut, changePwd}

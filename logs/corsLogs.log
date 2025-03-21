@@ -4,3 +4,7 @@
 20250316	17:27:06	cors	d44607f2-a103-4a10-ac85-d8fc362031f3		Not Allowed By Cors in corsOptions.js
 20250316	17:27:26	cors	7b8ce345-74bd-4cc9-b791-bba9213ddef4		Not Allowed By Cors in corsOptions.js
 20250316	17:27:26	cors	cbdfe9d7-4e4a-48ca-9243-b322aa5ae9d1		Not Allowed By Cors in corsOptions.js
+20250321	15:59:21	cors	e334f804-81ce-4953-bc56-48bacda17ba1		http://localhost:3000 Not Allowed By Cors in corsOptions.js
+20250321	15:59:21	cors	c7fc88d9-0690-4b78-8023-9560bd0c75b6		http://localhost:3000 Not Allowed By Cors in corsOptions.js
+20250321	16:03:22	cors	6e9b9803-7949-4bd5-8137-9f0f2cf3c21f		http://localhost:3000 Not Allowed By Cors in corsOptions.js
+20250321	16:03:22	cors	765936d9-5225-410c-ab27-11a095cd459d		http://localhost:3000 Not Allowed By Cors in corsOptions.js
