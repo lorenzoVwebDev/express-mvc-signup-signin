@@ -1,5 +1,5 @@
 # "mvc-signup-signin"
-  A node web server based on MVC that serves log files and set the allowed origins/headers for CORS. It includes the error handling middleware at the end of the chain. It also performs api crud operations on the employees mysql table 
+  A node web server based on MVC that serves log files and set the allowed origins/headers for CORS. It includes the error handling middleware at the end of the chain. It also performs api crud operations on the employees mysql table. Sign Up, sign in, log out and change password mvc for a complete authorization app. Enhanced with jwt delivering and verification 
 ## Features
 - mvc structure
 - Routing 
@@ -10,6 +10,9 @@
 - rest api routing
 - crud operations on the employees mysql tables 
 - mysqldb.config.js to dynamically creates queries over the whole backend framework
+- model authentication and employees to better performs data extraction and manipulation
+- jwt issuing 
+- jwt middleware verification
 
 ## installation
 
