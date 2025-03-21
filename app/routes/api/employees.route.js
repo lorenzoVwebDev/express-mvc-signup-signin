@@ -1,10 +1,10 @@
 const express = require('express');
 const Router = express.Router()
-const veirifyJWT = require('../../middleware/verifyJWT.js')
+const verifyJWT = require('../../middleware/verifyJWT.js')
 const { getAllEmployees, createNewEmployee, updateEmployee, deleteEmployee, getEmployee } = require('../../controller/employees.controller.js')
 
 Router.route('/*')
-  .get(veirifyJWT, (req, res, next) => { 
+  .get(/* verifyJWT,  */(req, res, next) => { 
     if (req.query.id === 'ALL') {
       console.log('true')
       getAllEmployees(req, res, next)
@@ -12,8 +12,8 @@ Router.route('/*')
       getEmployee(req, res, next)
     }
   })
-  .post(veirifyJWT, createNewEmployee)
-  .put(veirifyJWT, updateEmployee)
-  .delete(veirifyJWT, deleteEmployee)
+  .post(/* verifyJWT, */ createNewEmployee)
+  .put(/* verifyJWT, */ updateEmployee)
+  .delete(/* verifyJWT, */ deleteEmployee)
 
 module.exports = Router

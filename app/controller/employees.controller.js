@@ -2,17 +2,14 @@ const { v4:uuidv4 } = require('uuid')
 const { mysqlQuery, results } = require('../configuration/mysqldb.config.js');
 const { errorCreator } = require('../configuration/commonFunctions.js')
 const striptags = require('striptags')
+const model = require('../model/employees.model.js')
 
 
 const getAllEmployees = async (req, res, next) => {
   try {
-    const employees = await new Promise((resolve, reject) => {
-      mysqlQuery('select * from ??', ['employees'], resolve, reject);
-    }).then(data => data).catch(error => {
-      throw new Error(error)
-    }) 
-  
-    res.json(JSON.stringify(employees))
+    const result = await model.modelgetAllEmployees()
+
+    return res.status(result[0]).json(result[1])
 
   } catch (err) {
     res.status(500).json({'response': 'server-error'})
@@ -24,19 +21,9 @@ const getEmployee = async (req, res, next) => {
   try {
     const { id } = req.query;
 
-    if (!id.toString().match(/^\d*$/)) res.status(400).json({'response':'bad-request'});
- 
-    const employees = await new Promise((resolve, reject) => {
-      mysqlQuery('select * from ??', ['employees'], resolve, reject);
-    }).then(data => data).catch(error => {
-      throw new Error(error)
-    }) 
+    const result = await model.modelgetEmployee(id)
 
-    let employee = employees.filter(employee => id == employee.id)[0]
-
-    if (!employee) res.status(401).json({'response': 'not-found'});
-
-    res.status(200).json(employee)
+    return res.status(result[0]).json(result[1])
     
   } catch (error) {
     res.status(500).json({'response': 'server-error'});
@@ -46,36 +33,20 @@ const getEmployee = async (req, res, next) => {
 
 const createNewEmployee = async (req, res, next) => {
   try {
-    const employees = await new Promise((resolve, reject) => {
-      mysqlQuery('select * from ??', ['employees'], resolve, reject);
-    }).then(data => data).catch(error => {
-      throw new Error(error)
-    }) 
-
-
     let { firstname, lastname } = req.body;
     if (!firstname || !lastname) res.status(400).json({'response':'missing-credentials'});
-    
+
     firstname = striptags(firstname);
     lastname = striptags(lastname);
 
-    if (firstname.length > 50 || lastname.length > 50) res.status(401).json({'response':'characters-excess'})
     
-    if (firstname.match(/[\W_]/) || lastname.match(/[\W_]/)) res.status(401).json({'response':'invalid-characters'});
-  
-    const newEmployee = {
-      id: employees.length > 0 ? employees[employees.length - 1]?.id + 1 : 1,
-      firstname,
-      lastname
-    }
+    if (firstname.length > 50 || lastname.length > 50) return res.status(401).json({'response':'characters-excess'})
     
-    await new Promise((resolve, reject) => {
-      mysqlQuery('insert into ?? values (?, ?, ?)', ['employees', newEmployee.id, newEmployee.firstname, newEmployee.lastname], resolve, reject)
-    }).then(data => data).catch(error => {
-      throw new Error(error)
-    })
+    if (firstname.match(/[\W_]/) || lastname.match(/[\W_]/)) return res.status(401).json({'response':'invalid-characters'});
 
-    res.status(200).json({newEmployee})
+    const result = await model.modelcreateNewEmployee(firstname, lastname)
+
+    return res.status(result[0]).json(result[1])
 
   } catch (err) {
     res.status(500).json({'message': 'server-error'})
@@ -96,25 +67,11 @@ const updateEmployee = async (req, res, next) => {
     
     if (firstname.match(/[\W_]/) || lastname.match(/[\W_]/)) res.status(401).json({'response':'invalid-characters'});
 
-    const employees = await new Promise((resolve, reject) => {
-      mysqlQuery('select * from ??', ['employees'], resolve, reject)
-    }).then(data => data).catch(error => {
-      throw new Error(error)
-    })
-    const employee = employees.find(element => element.id === id);
-
-    if (!employee) res.status(401).json({'response':'id-not-found'})
     
-    employee.firstname = firstname;
-    employee.lastname = lastname;
+    const result = await model.modelupdateEmployee(id, firstname, lastname)
 
-    await new Promise((resolve, reject) => {
-      mysqlQuery('UPDATE ?? SET firstname = ?, lastname = ? WHERE id = ?', ['employees', employee.firstname, employee.lastname, employee.id], resolve, reject)
-    }).then(data => data).catch(error => {
-      throw new Error(error)
-    })
-    
-    res.status(200).json({'response': `updated-employee${id}`})
+    return res.status(result[0]).json(result[1]);
+
   } catch (err) {
     res.status(500).json({'response': 'server-error'})
     next(errorCreator(err.message, 'error', __filename))
@@ -129,8 +86,12 @@ const deleteEmployee = async (req, res, next) => {
     if (!id.match(/^\d*$/)) res.status(400).json({'response':'invalid-id'});
   
     id = parseInt(id)
-  
-    const employees = await new Promise((resolve, reject) => {
+    
+    const result = await model.modeldeleteEmployee(id)
+
+    return res.status(result[0]).json(result[1]);
+
+/*     const employees = await new Promise((resolve, reject) => {
       mysqlQuery('SELECT * FROM ??', ['employees'], resolve, reject)
     }).then(data => data).catch(error => {
       throw new Error(error)
@@ -152,7 +113,7 @@ const deleteEmployee = async (req, res, next) => {
       throw new Error(error)
     })
 
-    if (deleted) res.status(200).json({'response': `employee${employee.id}-deleted`})
+    if (deleted) res.status(200).json({'response': `employee${employee.id}-deleted`}) */
   } catch (err) {
     res.status(500).json({'response': 'server-error'})
     next(errorCreator(err.message, 'error', __filename))
