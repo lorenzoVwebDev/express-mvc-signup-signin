@@ -28,7 +28,6 @@ const veirifyJWT = (req, res, next) => {
     res.status(500).json({'message':'server-error'})
     next(errorCreator(error.message, 'error', __filename))
   }
-
 }
 
 module.exports = veirifyJWT 

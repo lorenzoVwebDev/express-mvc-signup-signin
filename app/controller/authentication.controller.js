@@ -16,7 +16,7 @@ const signUp = async (req, res, next) => {
 try {
   let { username, email, password } = req.body;
 
-  if (!username || !email || !password) res.status(401).json({'message': 'missing-credentials'});
+  if (!username || !email || !password) res.status(401).json({'response': 'missing-credentials'});
   
   username = striptags(username)
   email = emailRegex.test(striptags(email)) ? striptags(email) : null;
@@ -28,7 +28,7 @@ try {
     password
   }
 
-  if (!Object.entries(newUser).every((value) => value[1])) res.status(400).json({'message': 'invalid-credentials'});
+  if (!Object.entries(newUser).every((value) => value[1])) res.status(400).json({'response': 'invalid-credentials'});
 
   const users = await new Promise((resolve, reject) => {
     mysqlQuery('select * from ??', ['users'], resolve, reject);
@@ -38,7 +38,7 @@ try {
 
   for (const value of users) {
     if (value.username == username || value.email == email) {
-      return res.status(409).json({'message':'user-duplicated'});
+      return res.status(409).json({'response':'user-duplicated'});
     }
   }
 
@@ -55,11 +55,11 @@ try {
     throw new Error(error)
   })
   
-  res.status(200).json({'message':'user-created'})
+  res.status(200).json({'response':'user-created'})
 
 
 } catch (error) {
-  res.status(500).json({'message':'server-error'})
+  res.status(500).json({'response':'server-error'})
   next(errorCreator(error.message, 'error', __filename))
 }
 }
@@ -84,7 +84,7 @@ const signIn = async (req, res, next) => {
       }
     })
 
-    if (!foundUser) return res.status(400).json({'message': 'not-found'})
+    if (!foundUser) return res.status(400).json({'response': 'not-found'})
     
     const currentUnix = dayjs().unix()
     
@@ -131,15 +131,54 @@ const signIn = async (req, res, next) => {
           foundUser.attempts += 1;
         }
 
-        return res.status(401).json({'message':'wrong-password'})
+        return res.status(401).json({'response':'wrong-password'})
       }
     } else {
-      return res.status(401).json({"message":"attempts-excedeed"})
+      return res.status(401).json({"response":"attempts-excedeed"})
     }
   } catch (error) {
-    res.status(500).json({'message':'server-error'})
+    res.status(500).json({'response':'server-error'})
     next(errorCreator(error.message, 'error', __filename))
   }
 }
 
-module.exports = {signUp, signIn}
+const logOut = async (req, res, next) => {
+  try {
+    const cookies = req.cookies;
+    if (!cookies.refreshToken) return res.sendStatus(204);
+
+    const refreshToken = cookies.refreshToken;
+
+    const users = await new Promise((resolve, reject) => {
+      mysqlQuery("SELECT * from ??", ['users'], resolve, reject);
+    }).then(data => data).catch(error => {
+      throw new Error(error)
+    });
+
+    const user = users.find(user => user.refresh_token == refreshToken);
+
+    if (user) {
+      user.refreshToken = null;
+
+      const update = await new Promise((resolve, reject) => {
+        mysqlQuery("UPDATE users SET refresh_token = ? WHERE id = ?", [user.refreshToken, user.id], resolve, reject)
+      }).then(data => data).catch(error => {
+        throw new Error(error)
+      })
+
+      res.clearCookie('refreshToken', refreshToken, {
+        httpOnly: true, maxAge: 24 * 60 * 60 * 1000
+      }).status(200).json({'response':'log-out'})
+
+    } else {
+      res.clearCookie('refreshToken', refreshToken, {
+        httpOnly: true, maxAge: 24 * 60 * 60 * 1000
+      }).status(200).json({'response':'log-out'})
+    }
+  } catch (error) {
+    res.status(500).json({'response':'server-error'})
+    next(errorCreator(error.message, 'error', __filename))
+  }
+}
+
+module.exports = {signUp, signIn, logOut}

@@ -15,8 +15,8 @@ const mysqlQuery = (query, placeHolders, resolve, reject) => {
 
   connection.connect((err) => {
     if (err) {
+      reject(err);
       connection.destroy()
-      throw errorCreator(err.message, 'error', __filename);
     }
   })
   

@@ -15,7 +15,7 @@ const getAllEmployees = async (req, res, next) => {
     res.json(JSON.stringify(employees))
 
   } catch (err) {
-    res.status(500).json({'message': 'server-error'})
+    res.status(500).json({'response': 'server-error'})
     next(errorCreator(err.message, 'error', __filename))
   }
 }
@@ -24,7 +24,7 @@ const getEmployee = async (req, res, next) => {
   try {
     const { id } = req.query;
 
-    if (!id.toString().match(/^\d*$/)) res.status(400).json({'message':'bad-request'});
+    if (!id.toString().match(/^\d*$/)) res.status(400).json({'response':'bad-request'});
  
     const employees = await new Promise((resolve, reject) => {
       mysqlQuery('select * from ??', ['employees'], resolve, reject);
@@ -34,12 +34,12 @@ const getEmployee = async (req, res, next) => {
 
     let employee = employees.filter(employee => id == employee.id)[0]
 
-    if (!employee) res.status(401).json({'message': 'not-found'});
+    if (!employee) res.status(401).json({'response': 'not-found'});
 
     res.status(200).json(employee)
     
   } catch (error) {
-    res.status(500).json({'message': 'server-error'});
+    res.status(500).json({'response': 'server-error'});
     next(errorCreator(error.message, 'error', __filename));
   }
 }
@@ -54,14 +54,14 @@ const createNewEmployee = async (req, res, next) => {
 
 
     let { firstname, lastname } = req.body;
-    if (!firstname || !lastname) res.status(400).json({'message':'missing-credentials'});
+    if (!firstname || !lastname) res.status(400).json({'response':'missing-credentials'});
     
     firstname = striptags(firstname);
     lastname = striptags(lastname);
 
-    if (firstname.length > 50 || lastname.length > 50) res.status(401).json({'message':'characters-excess'})
+    if (firstname.length > 50 || lastname.length > 50) res.status(401).json({'response':'characters-excess'})
     
-    if (firstname.match(/[\W_]/) || lastname.match(/[\W_]/)) res.status(401).json({'message':'invalid-characters'});
+    if (firstname.match(/[\W_]/) || lastname.match(/[\W_]/)) res.status(401).json({'response':'invalid-characters'});
   
     const newEmployee = {
       id: employees.length > 0 ? employees[employees.length - 1]?.id + 1 : 1,
@@ -87,14 +87,14 @@ const updateEmployee = async (req, res, next) => {
   try {
     let {id, firstname, lastname } = req.body;
 
-    if (!id.toString().match(/^\d*$/)) res.status(401).json({'message':'invalid-id'});
+    if (!id.toString().match(/^\d*$/)) res.status(401).json({'response':'invalid-id'});
 
     firstname = striptags(firstname);
     lastname = striptags(lastname);
 
-    if (firstname.length > 50 || lastname.length > 50) res.status(401).json({'message':'characters-excess'})
+    if (firstname.length > 50 || lastname.length > 50) res.status(401).json({'response':'characters-excess'})
     
-    if (firstname.match(/[\W_]/) || lastname.match(/[\W_]/)) res.status(401).json({'message':'invalid-characters'});
+    if (firstname.match(/[\W_]/) || lastname.match(/[\W_]/)) res.status(401).json({'response':'invalid-characters'});
 
     const employees = await new Promise((resolve, reject) => {
       mysqlQuery('select * from ??', ['employees'], resolve, reject)
@@ -103,7 +103,7 @@ const updateEmployee = async (req, res, next) => {
     })
     const employee = employees.find(element => element.id === id);
 
-    if (!employee) res.status(401).json({'message':'id-not-found'})
+    if (!employee) res.status(401).json({'response':'id-not-found'})
     
     employee.firstname = firstname;
     employee.lastname = lastname;
@@ -114,9 +114,9 @@ const updateEmployee = async (req, res, next) => {
       throw new Error(error)
     })
     
-    res.status(200).json({'message': `updated-employee${id}`})
+    res.status(200).json({'response': `updated-employee${id}`})
   } catch (err) {
-    res.status(500).json({'message': 'server-error'})
+    res.status(500).json({'response': 'server-error'})
     next(errorCreator(err.message, 'error', __filename))
   }
 }
@@ -126,7 +126,7 @@ const deleteEmployee = async (req, res, next) => {
     const urlArray = req.originalUrl.split('/')
     let id = urlArray[urlArray.length-1];
   
-    if (!id.match(/^\d*$/)) res.status(400).json({'message':'invalid-id'});
+    if (!id.match(/^\d*$/)) res.status(400).json({'response':'invalid-id'});
   
     id = parseInt(id)
   
@@ -138,7 +138,7 @@ const deleteEmployee = async (req, res, next) => {
 
     const employee = employees.filter(employee => employee.id == id)[0]
 
-    if (!employee) res.status(401).json({'message':'not-found'})
+    if (!employee) res.status(401).json({'response':'not-found'})
 
     const deleted = await new Promise((resolve, reject) => {
       mysqlQuery('DELETE FROM ?? WHERE id = ?', ['employees', employee.id], resolve, reject)
@@ -152,9 +152,9 @@ const deleteEmployee = async (req, res, next) => {
       throw new Error(error)
     })
 
-    if (deleted) res.status(200).json({'message': `employee${employee.id}-deleted`})
+    if (deleted) res.status(200).json({'response': `employee${employee.id}-deleted`})
   } catch (err) {
-    res.status(500).json({'message': 'server-error'})
+    res.status(500).json({'response': 'server-error'})
     next(errorCreator(err.message, 'error', __filename))
   }
 
