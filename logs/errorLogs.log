@@ -22,3 +22,5 @@
 20250320	09:34:38	error	ce33f7ee-b068-4301-948d-a6dba8c20052		Error: ER_NO_SUCH_TABLE: Table 'mvc_signup_signin.employees' doesn't exist in employees.controller.js
 20250320	09:34:39	error	3546d68a-23bb-4b90-9f56-83a8b5b65a26		Error: ER_NO_SUCH_TABLE: Table 'mvc_signup_signin.employees' doesn't exist in employees.controller.js
 20250320	09:34:40	error	c0b5eab9-0f02-4d61-898f-9d7299cb4479		Error: ER_NO_SUCH_TABLE: Table 'mvc_signup_signin.employees' doesn't exist in employees.controller.js
+20250321	17:32:56	error	bc0935dc-053a-48bb-9c20-f2c1e5331669		Promis is not defined in authentication.controller.js
+20250321	18:08:42	error	9b744025-efe3-46be-86d4-4077f7bad9dc		password is not defined in authentication.controller.js
